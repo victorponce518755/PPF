@@ -1,27 +1,27 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask
 from flask_mysqldb import MySQL
-from flask_socketio import SocketIO
 
-app= Flask(__name__)
+# Configura la instancia de MySQL
+mysql = MySQL()
 
-#####
-#Configuracion de la BD
-#####
+def create_app():
+    app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'srv_user'
-app.config['MYSQL_PASSWORD'] = '4335'
-app.config['MYSQL_DB'] = 'PPD'
+    # Configuración de la base de datos
+    app.config['MYSQL_HOST'] = 'localhost'
+    app.config['MYSQL_USER'] = 'root'
+    app.config['MYSQL_PASSWORD'] = 'laura'
+    app.config['MYSQL_DB'] = 'UserDatabase'
 
-mysql= MySQL(app)
+    # Inicializa MySQL con la aplicación
+    mysql.init_app(app)
 
-socketio= SocketIO(app)
+    # Registrar el Blueprint del controlador de usuario
+    from controllers.UserController import user_bp
+    app.register_blueprint(user_bp, url_prefix='/users')
 
-
-
-
-
-
+    return app
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    app = create_app()
+    app.run(debug=True)
