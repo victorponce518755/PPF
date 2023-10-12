@@ -1,0 +1,19 @@
+-- Crear una base de datos sencilla para usuarios
+CREATE DATABASE UserDatabase;
+
+-- Usar la base de datos
+USE UserDatabase;
+
+-- Crear una tabla para almacenar usuarios
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+
+-- Insertar algunos usuarios de ejemplo
+INSERT INTO users (username, password, email) VALUES
+('usuario1', 'contrasena1', 'usuario1@example.com'),
+('usuario2', 'contrasena2', 'usuario2@example.com'),
+('usuario3', 'contrasena3', 'usuario3@example.com');
