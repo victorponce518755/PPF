@@ -11,3 +11,6 @@ class UserServices:
 
     def get_user_profile(self, user_id):
         return self.model_user.get_user(user_id)
+    
+    def login_user(self, correo, password):
+        return self.model_user.find_user_by_credentials(correo, password)
