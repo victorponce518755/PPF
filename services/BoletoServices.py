@@ -8,3 +8,7 @@ class BoletoServices:
     def create_boleto(self, boleto_data):
         boleto = Boleto(None, boleto_data['idEvento'], boleto_data['idUsuario'], boleto_data['asiento'], boleto_data['tipoAsiento'], boleto_data['precio'])
         self.model_boleto.create_boleto(boleto)
+
+    def get_boleto(self, boleto_id):
+        return self.model_boleto.get_boleto(boleto_id)
+    

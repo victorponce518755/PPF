@@ -16,3 +16,20 @@ def create_boleto():
     boleto_service = BoletoServices(mysql)
     boleto_service.create_boleto(boleto_data)
     return jsonify({'message': 'Boleto creado exitosamente'})
+
+@boleto_bp.route('/boleto/<int:boleto_id>', methods=['GET'])
+def get_boleto(boleto_id):
+    boleto_service = BoletoServices(mysql)
+    boleto = boleto_service.get_boleto(boleto_id)
+
+    if boleto:
+        boleto_dict = {
+            'idBoleto': boleto.idBoleto,
+            'idUsuario': boleto.idUsuario,
+            'idEvento': boleto.idEvento,
+            'fechaCompra': str(boleto.fechaCompra),
+            'tipo': boleto.tipo
+        }
+        return jsonify(boleto_dict)
+    else:
+        return jsonify({'message': 'Boleto no encontrado'}), 404
