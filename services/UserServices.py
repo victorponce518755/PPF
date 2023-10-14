@@ -1,5 +1,5 @@
 from models.ModelUser import ModelUser
-from entities.user import User
+from entities.user import Usuario as User
 
 class UserServices:
     def __init__(self, mysql):

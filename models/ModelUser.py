@@ -1,4 +1,4 @@
-from entities.user import User
+from entities.user import Usuario as User
 from flask_mysqldb import MySQL
 
 class ModelUser:
