@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_mysqldb import MySQL
 from flask_session import Session  # Importa la extensión Flask-Session
+import os
 
 # Configura la instancia de MySQL
 mysql = MySQL()
@@ -38,4 +39,4 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
