@@ -25,3 +25,4 @@ def get_artista(artista_id):
         return jsonify(artista_dict)
     else:
         return jsonify({'message': 'Artista no encontrado'}), 404
+
