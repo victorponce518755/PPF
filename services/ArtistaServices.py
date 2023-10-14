@@ -1,5 +1,5 @@
 from models.ModelArtista import ModelArtista
-from entities.Artista import Artista
+from entities.artista import Artista
 
 class ArtistaServices:
     def __init__(self, mysql):
