@@ -11,7 +11,7 @@ def create_app():
 
     # Configuración de la base de datos
     app.config['MYSQL_HOST'] = 'database-main.cbsqc5jwwjad.us-east-2.rds.amazonaws.com'
-    app.config['MYSQL_USER'] = 'main'
+    app.config['MYSQL_USER'] = 'admin'
     app.config['MYSQL_PASSWORD'] = 'Rtxmlp4335'
     app.config['MYSQL_DB'] = 'database-main'
 
