@@ -27,7 +27,7 @@ def get_boleto(boleto_id):
             'idBoleto': boleto.idBoleto,
             'idUsuario': boleto.idUsuario,
             'idEvento': boleto.idEvento,
-            'tipo': boleto.tipo,
+            'tipoAsiento': boleto.tipoAsiento,
             'asiento': boleto.asiento,
             'precio' : boleto.precio
 
