@@ -16,7 +16,7 @@ class ModelUser:
 
     def get_user(self, user_id):
         cursor = self.mysql.connection.cursor()
-        cursor.execute('SELECT Usuario.idUsuario, Usuario.nombre, Usuario.correo FROM Usuario WHERE idUsuario = %s', (user_id,))
+        cursor.execute('SELECT idUsuario, nombre, correo FROM Usuario WHERE idUsuario = %s', (user_id,))
         user_data = cursor.fetchone()
         print(user_data)
         cursor.close()
