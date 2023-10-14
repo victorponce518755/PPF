@@ -34,6 +34,13 @@ def create_app():
     # Registrar el Blueprint del controlador de sede
     from controllers.SedeController import sede_bp
     app.register_blueprint(sede_bp, url_prefix='/sedes')
+    # Registrar el Blueprint del controlador de boleto
+    from controllers.BoletoController import boleto_bp
+    app.register_blueprint(boleto_bp, url_prefix='/boletos')
+    # Registrar el Blueprint del controlador de evento
+    from controllers.EventoController import evento_bp
+    app.register_blueprint(evento_bp, url_prefix='/eventos')
+    
 
     return app
 
