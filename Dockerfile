@@ -8,7 +8,7 @@ WORKDIR $APP_HOME
 COPY . ./
 
 
-RUN pip install -r requeries.txt
+RUN pip install -r requirements.txt
 RUN pip install Flask gunicorn
 
 
