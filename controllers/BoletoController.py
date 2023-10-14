@@ -27,8 +27,10 @@ def get_boleto(boleto_id):
             'idBoleto': boleto.idBoleto,
             'idUsuario': boleto.idUsuario,
             'idEvento': boleto.idEvento,
-            'fechaCompra': str(boleto.fechaCompra),
-            'tipo': boleto.tipo
+            'tipo': boleto.tipo,
+            'asiento': boleto.asiento,
+            'precio' : boleto.precio
+
         }
         return jsonify(boleto_dict)
     else:
