@@ -40,10 +40,10 @@ def create_app():
     # Registrar el Blueprint del controlador de evento
     from controllers.EventoController import evento_bp
     app.register_blueprint(evento_bp, url_prefix='/eventos')
-    
+
 
     return app
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    app.run(debug=True)
