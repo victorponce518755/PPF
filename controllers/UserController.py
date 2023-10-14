@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, session
 from app import mysql  # Importa la instancia de MySQL desde app
 from services.UserServices import UserServices
 
+
 user_bp = Blueprint('user_bp', __name__)
 
 @user_bp.route('/', methods=['POST'])

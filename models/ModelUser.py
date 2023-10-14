@@ -1,6 +1,7 @@
 from entities.user import Usuario as User
 from entities.user import UsuarioSinPassword as UserSinPassword
 from flask_mysqldb import MySQL
+from werkzeug.security import generate_password_hash
 
 class ModelUser:
     def __init__(self, mysql):
@@ -8,9 +9,10 @@ class ModelUser:
 
     def create_user(self, user):
         cursor = self.mysql.connection.cursor()
+        password_hash = generate_password_hash(user.password)  # Genera el hash de la contraseña
         cursor.execute(
             'INSERT INTO Usuario (nombre, correo, password) VALUES (%s, %s, %s)',
-            (user.nombre, user.correo, user.password)
+            (user.nombre, user.correo, password_hash)  # Almacena el hash de la contraseña
         )
         self.mysql.connection.commit()
         cursor.close()
