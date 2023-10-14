@@ -1,4 +1,5 @@
 from entities.user import Usuario as User
+from entities.user import UsuarioSinPassword as UserSinPassword
 from flask_mysqldb import MySQL
 
 class ModelUser:
@@ -26,6 +27,20 @@ class ModelUser:
             return user
         else:
             return None
+        
+    def get_userNoPassword(self,user_id):
+        cursor = self.mysql.connection.cursor()
+        cursor.execute('SELECT idUsuario, nombre, correo FROM Usuario WHERE idUsuario = %s', (user_id,))
+        user_data = cursor.fetchone()
+        print(user_data)
+        cursor.close()
+
+        if user_data:
+            user = UserSinPassword(user_data[0], user_data[1], user_data[2])
+            return user
+        else:
+            return None
+
         
     def find_user_by_credentials(self, correo, password):
         cursor = self.mysql.connection.cursor()
