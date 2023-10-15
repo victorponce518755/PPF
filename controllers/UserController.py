@@ -19,14 +19,36 @@ def get_user_profile(user_id):
 
     if user:
         user_dict = {
-            'id': user.idUsuario,
-            'nombre': user.nombre,
-            'correo': user.correo
+            'id': user.id,
+            'nombre': user.name,
+            'username': user.username,
+            'usuario creado': user.created_at,
+            'usuario actualizado': user.updated_at
         }
         print(user_dict)
         return jsonify(user_dict)
     else:
         return jsonify({'message': 'Usuario no encontrado'}), 404
+    
+@user_bp.route('/userXML/<int:user_id>', methods=['GET'])
+def get_user_profileXML(user_id):
+    user_service = UserServices(mysql)
+    user = user_service.get_user_profile(user_id)
+
+    if user:
+        user_dict = {
+            'id': user.id,
+            'nombre': user.name,
+            'username': user.username,
+            'usuario creado': user.created_at,
+            'usuario actualizado': user.updated_at
+        }
+        print(user_dict)
+        return jsonify(user_dict)
+    
+    else:
+        return jsonify({'message': 'Usuario no encontrado'}), 404
+    
     
 
 @user_bp.route('/login', methods=['POST'])
@@ -40,15 +62,15 @@ def login():
     if user:
 
         # Guarda el usuario en la sesión
-        session['user_id'] = user.idUsuario
-        session['nombre'] = user.nombre
-        session['correo'] = user.correo
+        session['user_id'] = user.id
+        session['nombre'] = user.name
+        session['username'] = user.username
         # Usuario autenticado, puedes generar un token de autenticación si es necesario.
         # Luego, puedes devolver la respuesta apropiada, como un token de autenticación y
         # otros detalles del usuario.
         response = {
             'message': 'Inicio de sesión exitoso',
-            'user_id': user.idUsuario,
+            'user_id': user.id,
             'nombre': user.nombre,
             'correo': user.correo,
             'token': 'tu_token_de_autenticación'  # Genera un token si es necesario

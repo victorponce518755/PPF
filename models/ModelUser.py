@@ -3,6 +3,9 @@ from entities.user import UsuarioSinPassword as UserSinPassword
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash
 
+
+#class Usuario:
+#def __init__(self, id, name, username,password,is_admin,created_at,updated_at)
 class ModelUser:
     def __init__(self, mysql):
         self.mysql = mysql
@@ -11,47 +14,35 @@ class ModelUser:
         cursor = self.mysql.connection.cursor()
         password_hash = generate_password_hash(user.password)  # Genera el hash de la contraseña
         cursor.execute(
-            'INSERT INTO Usuario (nombre, correo, password) VALUES (%s, %s, %s)',
-            (user.nombre, user.correo, password_hash)  # Almacena el hash de la contraseña
+            'INSERT INTO identity (name, username, password, is_admin,created_at,updated_at) VALUES (%s, %s, %s, %s, %s, %s)',
+            (user.name, user.username, password_hash, user.is_admin, user.created_at, user.updated_at)
         )
         self.mysql.connection.commit()
         cursor.close()
 
-    def get_user(self, user_id):
-        cursor = self.mysql.connection.cursor()
-        cursor.execute('SELECT idUsuario, nombre, correo FROM Usuario WHERE idUsuario = %s', (user_id,))
-        user_data = cursor.fetchone()
-        print(user_data)
-        cursor.close()
-
-        if user_data:
-            user = User(user_data[0], user_data[1], user_data[2])
-            return user
-        else:
-            return None
         
     def get_userNoPassword(self,user_id):
         cursor = self.mysql.connection.cursor()
-        cursor.execute('SELECT idUsuario, nombre, correo FROM Usuario WHERE idUsuario = %s', (user_id,))
+        cursor.execute('SELECT id, name,is_admin, created_at,updated_at FROM identity WHERE id = %s', (user_id,))
         user_data = cursor.fetchone()
         print(user_data)
         cursor.close()
 
         if user_data:
-            user = UserSinPassword(user_data[0], user_data[1], user_data[2])
+            user = UserSinPassword(user_data[0], user_data[1], user_data[2], user_data[3], user_data[4])
             return user
         else:
             return None
 
         
-    def find_user_by_credentials(self, correo, password):
+    def find_user_by_credentials(self, username, password):
         cursor = self.mysql.connection.cursor()
-        cursor.execute('SELECT idUsuario, nombre, correo FROM Usuario WHERE correo = %s AND password = %s', (correo, password))
+        cursor.execute('SELECT id, name, is_admin, created_at, updated_at FROM identity WHERE username = %s AND password = %s', (username, password))
         user_data = cursor.fetchone()
         cursor.close()
 
         if user_data:
-            user = User(user_data[0], user_data[1], user_data[2])
+            user = User(user_data[0], user_data[1], user_data[2], user_data[3], user_data[4])
             return user
         else:
             return None
