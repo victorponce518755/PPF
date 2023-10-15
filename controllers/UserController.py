@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, session
 from app import mysql  # Importa la instancia de MySQL desde app
 from services.UserServices import UserServices
+from xml.etree import ElementTree as ET
 
 
 user_bp = Blueprint('user_bp', __name__)
@@ -29,27 +30,7 @@ def get_user_profile(user_id):
         return jsonify(user_dict)
     else:
         return jsonify({'message': 'Usuario no encontrado'}), 404
-    
-@user_bp.route('/userXML/<int:user_id>', methods=['GET'])
-def get_user_profileXML(user_id):
-    user_service = UserServices(mysql)
-    user = user_service.get_user_profile(user_id)
-
-    if user:
-        user_dict = {
-            'id': user.id,
-            'nombre': user.name,
-            'username': user.username,
-            'usuario creado': user.created_at,
-            'usuario actualizado': user.updated_at
-        }
-        print(user_dict)
-        return jsonify(user_dict)
-    
-    else:
-        return jsonify({'message': 'Usuario no encontrado'}), 404
-    
-    
+       
 
 @user_bp.route('/login', methods=['POST'])
 def login():
