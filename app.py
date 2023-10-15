@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_mysqldb import MySQL
-from flask_session import Session  # Importa la extensión Flask-Session
+from flask_session import Session  
 import os
 
-# Configura la instancia de MySQL
+
 mysql = MySQL()
 
 def create_app():

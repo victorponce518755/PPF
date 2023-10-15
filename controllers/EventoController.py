@@ -23,8 +23,8 @@ def get_evento_info(evento_id):
             'nombre': evento.nombre,
             'descripcion': evento.descripcion,
             'idSede': evento.idSede,
-            'fecha': str(evento.fecha),  # Convierte la fecha a una cadena legible
-            'hora': str(evento.hora),    # Convierte la hora a una cadena legible
+            'fecha': str(evento.fecha),  
+            'hora': str(evento.hora),    
             'cantidadBoletosNormales': evento.cantidadBoletosNormales,
             'cantidadBoletosVip': evento.cantidadBoletosVip
         }
