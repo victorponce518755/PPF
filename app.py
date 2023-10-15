@@ -13,7 +13,7 @@ def create_app():
     app.config['MYSQL_HOST'] = 'database-main.cbsqc5jwwjad.us-east-2.rds.amazonaws.com'
     app.config['MYSQL_USER'] = 'admin'
     app.config['MYSQL_PASSWORD'] = 'Rtxmlp4335'
-    app.config['MYSQL_DB'] = 'Conciertos'
+    app.config['MYSQL_DB'] = 'Conciertos2'
 
     # Configuración de Flask-Session
     app.config['SESSION_TYPE'] = 'filesystem'  # Almacena las sesiones en el sistema de archivos
