@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_mysqldb import MySQL
 from flask_session import Session  
+from flask_cors import CORS
 import os
 
 
@@ -8,6 +9,7 @@ mysql = MySQL()
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
 
     # Configuración de la base de datos
     app.config['MYSQL_HOST'] = 'database-main.cbsqc5jwwjad.us-east-2.rds.amazonaws.com'
