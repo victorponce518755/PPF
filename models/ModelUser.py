@@ -42,7 +42,7 @@ class ModelUser:
         cursor.close()
 
         if user_data:
-            user = User(user_data[0], user_data[1], user_data[2], password, user_data[3], user_data[4], user_data[5], user_data[6])
+            user = User(user_data[0], user_data[1], user_data[2], password[3], user_data[4], user_data[5], user_data[6])
             return user
         else:
             return None
