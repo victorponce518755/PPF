@@ -76,7 +76,7 @@ def login():
         response = {
             'message': 'Inicio de sesión exitoso',
             'user_id': user.id,
-            'nombre': user.nombre,
+            'nombre': user.name,
             'username': user.username,
             'admin': user.is_admin,
             
