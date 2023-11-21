@@ -68,7 +68,7 @@ def login():
     user_service = UserServices(mysql)
 
     # Realiza la lógica de inicio de sesión
-    user = user_service.login_user(login_data['username'], login_data['password'])
+    user = user_service.login_user2(login_data['username'], login_data['password'])
 
     if user:
 

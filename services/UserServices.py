@@ -21,3 +21,11 @@ class UserServices:
             return user
         else:
             return None
+        
+    # lofin user, pero sin contraseña hash
+    def login_user2(self, username, password):
+        user = self.model_user.find_user_by_credentials(username, password)
+        if user:
+            return user
+        else:
+            return None
