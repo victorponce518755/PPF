@@ -77,7 +77,7 @@ def login():
             'message': 'Inicio de sesión exitoso',
             'user_id': user.id,
             'nombre': user.nombre,
-            'correo': user.username,
+            'username': user.username,
             'admin': user.is_admin,
             
         }
