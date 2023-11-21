@@ -37,15 +37,16 @@ class ModelUser:
         
     def find_user_by_credentials(self, username, password):
         cursor = self.mysql.connection.cursor()
-        cursor.execute('SELECT id, name, is_admin, created_at, updated_at FROM identity WHERE username = %s AND password = %s', (username, password))
+        cursor.execute('SELECT id, name, username, is_admin, created_at, updated_at FROM identity WHERE username = %s AND password = %s', (username, password))
         user_data = cursor.fetchone()
         cursor.close()
 
         if user_data:
-            user = User(user_data[0], user_data[1], user_data[2], user_data[3], user_data[4])
+            user = User(user_data[0], user_data[1], user_data[2], password, user_data[3], user_data[4], user_data[5], user_data[6])
             return user
         else:
             return None
+
 
 
 
