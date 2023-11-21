@@ -60,3 +60,28 @@ def login():
     else:
         # Usuario no autenticado, devuelve una respuesta de error apropiada.
         return jsonify({'message': 'Inicio de sesión fallido'}), 401  # 401: Unauthorized
+
+
+@user_bp.route('/login', methods=['POST'])
+def login():
+    login_data = request.get_json()
+    user_service = UserServices(mysql)
+
+    # Realiza la lógica de inicio de sesión
+    user = user_service.login_user(login_data['correo'], login_data['password'])
+
+    if user:
+
+        
+        response = {
+            'message': 'Inicio de sesión exitoso',
+            'user_id': user.id,
+            'nombre': user.nombre,
+            'correo': user.correo,
+            'admin': user.is_admin,
+            
+        }
+        return jsonify(response)
+    else:
+        # Usuario no autenticado, devuelve una respuesta de error apropiada.
+        return jsonify({'message': 'Inicio de sesión fallido'}), 401  # 401: Unauthorized
