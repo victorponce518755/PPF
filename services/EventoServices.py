@@ -11,3 +11,7 @@ class EventoServices:
 
     def get_evento_info(self, evento_id):
         return self.model_evento.get_evento_info(evento_id)
+
+    def get_all_eventos(self):
+        return self.model_evento.get_all_eventos()
+    

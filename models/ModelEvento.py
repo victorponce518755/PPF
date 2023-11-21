@@ -25,3 +25,18 @@ class ModelEvento:
             return evento
         else:
             return None
+        
+    def get_all_eventos(self):
+        cursor = self.mysql.connection.cursor()
+        cursor.execute('SELECT Eventos.idEvento, Eventos.idArtista, Eventos.nombre, Eventos.descripcion, Eventos.idSede, Eventos.fecha, Eventos.hora, Eventos.cantidadBoletosNormales, Eventos.cantidadBoletosVip FROM Eventos')
+        eventos_data = cursor.fetchall()
+        cursor.close()
+
+        if eventos_data:
+            eventos = []
+            for evento_data in eventos_data:
+                evento = Evento(evento_data[0], evento_data[1], evento_data[2], evento_data[3], evento_data[4], evento_data[5], evento_data[6], evento_data[7], evento_data[8])
+                eventos.append(evento)
+            return eventos
+        else:
+            return None
