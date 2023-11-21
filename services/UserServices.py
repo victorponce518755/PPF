@@ -15,8 +15,8 @@ class UserServices:
     def get_user_profile(self, user_id):
         return self.model_user.get_userNoPassword(user_id)
 
-    def login_user(self, correo, password):
-        user = self.model_user.find_user_by_credentials(correo, password)
+    def login_user(self, username, password):
+        user = self.model_user.find_user_by_credentials(username, password)
         if user and check_password_hash(user.password, password):
             return user
         else:

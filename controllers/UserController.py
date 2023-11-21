@@ -32,8 +32,8 @@ def get_user_profile(user_id):
         return jsonify({'message': 'Usuario no encontrado'}), 404
        
 
-@user_bp.route('/login', methods=['POST'])
-def login():
+@user_bp.route('/login1', methods=['POST'])
+def login1():
     login_data = request.get_json()
     user_service = UserServices(mysql)
 
@@ -68,7 +68,7 @@ def login():
     user_service = UserServices(mysql)
 
     # Realiza la lógica de inicio de sesión
-    user = user_service.login_user(login_data['correo'], login_data['password'])
+    user = user_service.login_user(login_data['username'], login_data['password'])
 
     if user:
 
@@ -77,7 +77,7 @@ def login():
             'message': 'Inicio de sesión exitoso',
             'user_id': user.id,
             'nombre': user.nombre,
-            'correo': user.correo,
+            'correo': user.username,
             'admin': user.is_admin,
             
         }
