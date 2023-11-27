@@ -25,4 +25,19 @@ class ModelSede:
             return sede
         else:
             return None
+        
+    def get_all_sedes(self):
+        cursor = self.mysql.connection.cursor()
+        cursor.execute('SELECT * FROM Sede')
+        sedes_data = cursor.fetchall()
+        cursor.close()
+
+        if sedes_data:
+            sedes = []
+            for sede_data in sedes_data:
+                sede = Sede(sede_data[0], sede_data[1], sede_data[2], sede_data[3])
+                sedes.append(sede)
+            return sedes
+        else:
+            return None
 

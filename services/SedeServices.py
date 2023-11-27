@@ -11,3 +11,7 @@ class SedeServices:
 
     def get_sede_info(self, sede_id):
         return self.model_sede.get_sede(sede_id)
+    
+    def get_all_sedes(self):
+        return self.model_sede.get_all_sedes()
+    

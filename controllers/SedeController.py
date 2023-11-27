@@ -26,3 +26,22 @@ def get_sede_info(sede_id):
         return jsonify(sede_dict)
     else:
         return jsonify({'message': 'Sede not found'}), 404
+    
+@sede_bp.route('/sede', methods=['GET'])
+def get_all_sedes():
+    sede_service = SedeServices(mysql)
+    sedes = sede_service.get_all_sedes()
+
+    if sedes:
+        sedes_list = []
+        for sede in sedes:
+            sede_dict = {
+                'idSede': sede.idSede,
+                'nombre': sede.nombre,
+                'capacidad': sede.capacidad,
+                'ubicacion': sede.ubicacion
+            }
+            sedes_list.append(sede_dict)
+        return jsonify(sedes_list)
+    else:
+        return jsonify({'message': 'No hay sedes registradas'}), 404
