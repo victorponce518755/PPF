@@ -11,3 +11,7 @@ class ArtistaServices:
 
     def get_artista(self, artista_id):
         return self.model_artista.get_artista(artista_id)
+    
+    def get_all_artistas(self):
+        return self.model_artista.get_all_artistas()
+    

@@ -26,3 +26,18 @@ class ModelArtista:
             return artista
         else:
             return None
+        
+    def get_all_artistas(self):
+        cursor = self.mysql.connection.cursor()
+        cursor.execute('SELECT * FROM Artista')
+        artistas_data = cursor.fetchall()
+        cursor.close()
+
+        if artistas_data:
+            artistas = []
+            for artista_data in artistas_data:
+                artista = Artista(artista_data[0], artista_data[1], artista_data[2])
+                artistas.append(artista)
+            return artistas
+        else:
+            return None
