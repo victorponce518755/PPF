@@ -11,6 +11,7 @@ def create_evento():
     evento_service.create_evento(evento_data)
     return jsonify({'message': 'Evento created successfully'})
 
+
 @evento_bp.route('/evento/<int:evento_id>', methods=['GET'])
 def get_evento_info(evento_id):
     evento_service = EventoServices(mysql)
