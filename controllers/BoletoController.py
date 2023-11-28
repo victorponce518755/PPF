@@ -6,8 +6,6 @@ boleto_bp = Blueprint('boleto_bp', __name__)
 
 @boleto_bp.route('/boleto', methods=['POST'])
 def create_boleto():
-    if 'user_id' not in session:
-        return jsonify({'message': 'Usuario no autenticado'}), 401
 
     user_id = session['user_id']
     boleto_data = request.get_json()
