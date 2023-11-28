@@ -17,6 +17,8 @@ def create_app():
         if not request.is_secure and request.headers.get('X-Forwarded-Proto') != 'https':
             url = request.url.replace('http://', 'https://', 1)
             return redirect(url, code=301)
+        
+    CORS(app)
 
     # Configuración de la base de datos
     app.config['MYSQL_HOST'] = 'database-main.cbsqc5jwwjad.us-east-2.rds.amazonaws.com'
