@@ -48,4 +48,14 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
+
+    #ruta al certificado y la llave
+    cert = 'certificado.crt'
+    key = 'clave_privada.key'
     app.run(debug=True)
+
+    if not os.path.exists(cert) or not os.path.exists(key):
+        print("No se encontraron el certificado y la clave privada.")
+    else:
+        # Ejecutar la aplicación con SSL habilitado
+        app.run(debug=True, ssl_context=(cert, key))
