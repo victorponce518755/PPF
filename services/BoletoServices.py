@@ -15,3 +15,6 @@ class BoletoServices:
     def get_boletos_byUserId(self, user_id):
         return self.model_boleto.get_boletos_byUserId(user_id)
     
+    def get_allBoletos(self):
+        return self.model_boleto.get_allBoletos()
+    

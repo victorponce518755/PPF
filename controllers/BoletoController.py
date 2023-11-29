@@ -52,3 +52,25 @@ def get_boletos_by_user_id(user_id):
         return jsonify(boletos_list)
     else:
         return jsonify({'message': 'No se encontraron boletos para el usuario'}), 404
+    
+@boleto_bp.route('/boleto/all', methods=['GET'])
+def get_all_boletos():
+    boleto_service = BoletoServices(mysql)
+    boletos = boleto_service.get_allBoletos()
+
+    if boletos:
+        boletos_list = []
+        for boleto in boletos:
+            boleto_dict = {
+                'idBoleto': boleto.idBoleto,
+                'idUsuario': boleto.idUsuario,
+                'idEvento': boleto.idEvento,
+                'tipoAsiento': boleto.tipoAsiento,
+                'asiento': boleto.asiento,
+                'precio': boleto.precio
+            }
+            boletos_list.append(boleto_dict)
+
+        return jsonify(boletos_list)
+    else:
+        return jsonify({'message': 'No se encontraron boletos'}), 404
