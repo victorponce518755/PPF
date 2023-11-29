@@ -40,7 +40,7 @@ class ModelBoleto:
             return boletos
         else:
             return None
-        
+       
     def get_allBoletos(self):
         cursor = self.mysql.connection.cursor()
         cursor.execute('SELECT * FROM Boletos')
@@ -55,3 +55,4 @@ class ModelBoleto:
             return boletos
         else:
             return None
+        
